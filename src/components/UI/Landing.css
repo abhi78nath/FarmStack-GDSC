@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    background-color: #333;
+    color: #fff;
+  }
+.container-landing{
+    display: flex;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    overflow: hidden;
+    text-align: justify;
+}
+.container-landing .left{
+    flex: 50%;
+}
+.container-landing .left p, h1{
+    text-align: right;
+    margin: 2.5rem;
+    width: 25rem;
+}
+.container-landing .right{
+    flex: 50%;
+}
+.left button{
+background-color: #333                                                      ;
+border: 0.01rem solid;
+border-radius: 2rem;
+width: 6rem;
+padding: 0.5rem;
+cursor: pointer;
+transition: 0.5s ease;
+}
+.left button:hover{
+    background-color: #333;
+    color: rgb(72, 184, 72);
+    border: 0.01rem solid rgb(72, 184, 72);
+}
+
+.left button a{
+    text-decoration: none;
+    color:black;
+}
+
+.left p{
+    font-size: large;
+}
+
+#heroimg{
+    width: 30rem;
+    /* animation: float 3s ease-out infinite; */
+}
+
+#heroimg:hover{
+    animation: float 3s ease-out infinite;
+}
+@keyframes float{
+  50%{
+    transform: translateX(1rem);
+  }
+}
+
+@media screen and (max-width:768px) {
+    .container-landing{
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    .container-landing .left p, h1{
+        margin: 2rem;
+        width: 18rem;
+    }
+}
