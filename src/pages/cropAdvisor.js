@@ -5,19 +5,20 @@ const CropInputForm = () => {
 const [climate, setClimate] = useState('');
 const [soil, setSoil] = useState('');
 const [crops, setCrops] = useState('');
+const [month, setMonth] = useState('');
 const [isLoading, setLoading] = useState(false);
 const [location, setLocation] = useState('');
 
 useEffect(() => {
-const getUserLocation = async () => {
-try {
-const userLocation = await getLocation();
-setLocation(userLocation.city);
-} catch (error) {
-console.error(error);
-}
-};
-getUserLocation();
+  const getUserLocation = async () => {
+  try {
+    const userLocation = await getLocation();
+    setLocation(userLocation.city);
+  } catch (error) {
+    console.error(error);
+  }
+  };
+  getUserLocation();
 }, []);
 
 const handleSubmit = async (event) => {
@@ -32,7 +33,8 @@ headers: {
 body: JSON.stringify({
 location,
 climate,
-soil
+soil,
+month
 })
 });
 const result = await response.json();
@@ -43,9 +45,19 @@ console.error(error);
 setLoading(false);
 };
 
+const handleLocationChange = (event) => {
+  setLocation(event.target.value);
+}
+
 return (
 <div>
 <form onSubmit={handleSubmit}>
+<label>
+    Location:
+    <input type="text" value={location} onChange={handleLocationChange} />
+</label>
+  <br />
+  <br />
 <label>
 Climate:
 <select value={climate} onChange={event => setClimate(event.target.value)}>
@@ -71,6 +83,27 @@ Soil:
 <option value="Alluvial">Alluvial</option>
 </select>
 </label>
+<br />
+<br />
+<label>
+Month:
+<select value={month} onChange={event => setMonth(event.target.value)}>
+  <option value="">Select Month</option>
+  <option value="Jan">January</option>
+  <option value="Feb">February</option>
+  <option value="Mar">March</option>
+  <option value="Apr">April</option>
+  <option value="May">May</option>
+  <option value="Jun">June</option>
+  <option value="Jul">July</option>
+  <option value="Aug">August</option>
+  <option value="Sep">September</option>
+  <option value="Oct">October</option>
+  <option value="Nov">November</option>
+  <option value="Dec">December</option>
+</select>
+</label>
+
 <br />
 <br />
 <button type="submit">Predict Crop</button>
